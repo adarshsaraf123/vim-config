@@ -19,6 +19,10 @@ nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>. :CtrlPTag<cr>
 "toggle tagbar
 nnoremap <leader>t :TagbarToggle<cr>
+"toggle relative numbering
+nnoremap <leader>n :setl rnu!<cr>
+"toggle tagbar
+nnoremap <leader>f :setl foldmethod=syntax<cr>
 
 "displays a line under the cursor
 set cursorline
@@ -43,8 +47,25 @@ Plug 'xolox/vim-misc'
 "for easy maintainance of sessions
 Plug 'xolox/vim-session'
 "vim-go for golang support
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', {'on':['GoImport', 'GoDef','GoFmt', 'GoDescribe', 'GoRun', 'GoBuild', 'GoImplements', 'GoCallers', 'GoCallees'], 'do': ':GoUpdateBinaries' }
+"vim gruvbox colorscheme
+Plug 'morhetz/gruvbox'
+"for better status bar display
+Plug 'vim-airline/vim-airline'
+"for commenting
+Plug 'scrooloose/nerdcommenter'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
+
+"for gruvbox colorscheme
+set t_Co=256
+set background=dark
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
+
+"for solarized colorscheme
+syntax enable
+set background=dark
 
 "to disable the autosave session option with xolox/vim-session plugin
 let g:session_autosave = 'no'
