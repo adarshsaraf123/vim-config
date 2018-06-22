@@ -32,6 +32,12 @@ set autowrite
 "necessary for git gutter diff markers as of now
 set updatetime=100
 
+" Load vim-plug
+if empty(glob("~/.vim/autoload/plug.vim"))
+    execute '!curl -fLo ~/.vim/autoload/plug.vim
+    https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+    endif
+
 "Installing plugins using the `Plug` plugin manager
 call plug#begin('~/.vim/plugged')
 "git gutter for git changes marked in display
@@ -52,9 +58,28 @@ Plug 'fatih/vim-go', {'on':['GoImport', 'GoDef','GoFmt', 'GoDescribe', 'GoRun', 
 Plug 'morhetz/gruvbox'
 "for better status bar display
 Plug 'vim-airline/vim-airline'
-"for commenting
-Plug 'scrooloose/nerdcommenter'
+Plug 'vim-airline/vim-airline-themes'
+"file system explorer
+Plug 'scrooloose/nerdtree'
 Plug 'altercation/vim-colors-solarized'
+"for ack-ing within vim
+Plug 'mileszs/ack.vim'
+"for linting
+Plug 'w0rp/ale'
+
+"for snipmate
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+
+Plug 'mkitt/tabline.vim'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/mru.vim'
+Plug 'chazy/cscope_maps'
+
+"for making quoting/paranthesizing simple
+Plug 'tpope/vim-surround'
+Plug 'godlygeek/tabular'
 call plug#end()
 
 "for gruvbox colorscheme
@@ -101,3 +126,8 @@ let g:tagbar_type_go = {
 \ }
 " to display the tagbar on the left side of the screen
 let g:tagbar_left = 1
+let g:NERDTreeWinPos = "right"
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+"set list lcs=tab:\|\
+"hi SpecialKey ctermfg=66 guifg=#649A9A
