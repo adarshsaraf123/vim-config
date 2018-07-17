@@ -22,7 +22,8 @@ nnoremap <leader>t :TagbarToggle<cr>
 "toggle relative numbering
 nnoremap <leader>n :setl rnu!<cr>
 "toggle tagbar
-nnoremap <leader>f :setl foldmethod=syntax<cr>
+nnoremap <leader>fs :setl foldmethod=syntax<cr>
+nnoremap <leader>fm :setl foldmethod=manual<cr>
 
 "displays a line under the cursor
 set cursorline
@@ -31,6 +32,10 @@ set autowrite
 "reduce the update time from the default 4 seconds to 100 miliseconds
 "necessary for git gutter diff markers as of now
 set updatetime=100
+"to show the commands being typed on screen
+set showcmd
+"disable cscope errors 
+set nocscopeverbose
 
 " Load vim-plug
 if empty(glob("~/.vim/autoload/plug.vim"))
@@ -80,6 +85,17 @@ Plug 'chazy/cscope_maps'
 "for making quoting/paranthesizing simple
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
+Plug 'justinmk/vim-syntax-extra'
+Plug 'sheerun/vim-polyglot'
+
+"find ideal positions to jump to
+Plug 'unblevable/quick-scope'
+
+""" Custom text objects
+Plug 'kana/vim-textobj-user'
+Plug 'glts/vim-textobj-comment'
+Plug 'kana/vim-textobj-function'
+
 call plug#end()
 
 "for gruvbox colorscheme
@@ -129,5 +145,23 @@ let g:tagbar_left = 1
 let g:NERDTreeWinPos = "right"
 nnoremap <C-n> :NERDTreeToggle<CR>
 
-"set list lcs=tab:\|\
+" custom colorscheme linking
+highlight link Function GruvboxBlue
+highlight link QuickScopeSecondary GruvboxAquaBold
+" highlight link QuickScopeSecondary GruvboxOrangeBold
+" highlight link QuickScopePrimary GruvboxRedBold
+
+set list 
+set lcs=tab:\|\ 
+" set lcs=tab:├─
 "hi SpecialKey ctermfg=66 guifg=#649A9A
+
+" richer colouring for golang
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_auto_sameids = 1
