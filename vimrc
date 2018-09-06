@@ -9,6 +9,9 @@ set autoindent
 set incsearch	"search as characters are entered
 set hlsearch	"highlight search matches
 
+"enable relative numbering on opening a file
+set rnu
+
 "change leader to comma
 let mapleader = ","
 
@@ -58,7 +61,7 @@ Plug 'xolox/vim-misc'
 "for easy maintainance of sessions
 Plug 'xolox/vim-session'
 "vim-go for golang support
-Plug 'fatih/vim-go', {'on':['GoImport', 'GoDef','GoFmt', 'GoDescribe', 'GoRun', 'GoBuild', 'GoImplements', 'GoCallers', 'GoCallees'], 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go'
 "vim gruvbox colorscheme
 Plug 'morhetz/gruvbox'
 "for better status bar display
@@ -95,7 +98,10 @@ Plug 'unblevable/quick-scope'
 Plug 'kana/vim-textobj-user'
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-function'
-
+"
+" A Vim Plugin for Lively Previewing LaTeX PDF Output
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'lervag/vimtex'
 call plug#end()
 
 "for gruvbox colorscheme
@@ -165,3 +171,25 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_auto_sameids = 1
+
+" change go fmt command to `gofmt -s`
+let g:go_fmt_command = "gofmt"
+let g:go_fmt_options = "-s"
+
+"shorter update time for live preview
+autocmd Filetype tex setl updatetime=1
+"use Preview as the pdf viewer for tex pdf previews
+let g:livepreview_previewer = 'open -a Preview'
+let g:polyglot_disabled = ['latex']
+
+let g:tagbar_type_tex = {
+    \ 'ctagstype' : 'latex',
+    \ 'kinds'     : [
+        \ 's:sections',
+        \ 'g:graphics:0:0',
+        \ 'l:labels',
+        \ 'r:refs:1:0',
+        \ 'p:pagerefs:1:0'
+    \ ],
+    \ 'sort'    : 0,
+\ }
