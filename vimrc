@@ -1,4 +1,5 @@
 "ui config
+set ttymouse=xterm2
 set mouse=a	"enable mouse support
 	"set cursorline	"display a line under the current cursor position
 set wildmenu 	"display the list of files you can cycle through in, e.g., :e
@@ -93,6 +94,7 @@ Plug 'sheerun/vim-polyglot'
 
 "find ideal positions to jump to
 Plug 'unblevable/quick-scope'
+Plug 'easymotion/vim-easymotion'
 
 """ Custom text objects
 Plug 'kana/vim-textobj-user'
@@ -104,6 +106,7 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'lervag/vimtex'
 call plug#end()
 
+map <Leader> <Plug>(easymotion-prefix)
 "for gruvbox colorscheme
 set t_Co=256
 set background=dark
@@ -193,3 +196,5 @@ let g:tagbar_type_tex = {
     \ ],
     \ 'sort'    : 0,
 \ }
+
+au BufRead,BufNewFile *.md,*.tex setlocal textwidth=80
